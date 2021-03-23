@@ -1,0 +1,125 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+package server;
+
+import common.Dish;
+import common.Drone;
+import common.Ingredient;
+import common.Order;
+import common.Postcode;
+import common.Staff;
+import common.Supplier;
+import common.UpdateListener;
+import common.User;
+import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.Map;
+
+public interface ServerInterface {
+    void loadConfiguration(String var1) throws FileNotFoundException;
+
+    void setRestockingIngredientsEnabled(boolean var1);
+
+    void setRestockingDishesEnabled(boolean var1);
+
+    void setStock(Dish var1, Number var2);
+
+    void setStock(Ingredient var1, Number var2);
+
+    List<Dish> getDishes();
+
+    Dish addDish(String var1, String var2, Number var3, Number var4, Number var5);
+
+    void removeDish(Dish var1) throws ServerInterface.UnableToDeleteException;
+
+    void addIngredientToDish(Dish var1, Ingredient var2, Number var3);
+
+    void removeIngredientFromDish(Dish var1, Ingredient var2);
+
+    void setRecipe(Dish var1, Map<Ingredient, Number> var2);
+
+    void setRestockLevels(Dish var1, Number var2, Number var3);
+
+    Number getRestockThreshold(Dish var1);
+
+    Number getRestockAmount(Dish var1);
+
+    Map<Ingredient, Number> getRecipe(Dish var1);
+
+    Map<Dish, Number> getDishStockLevels();
+
+    List<Ingredient> getIngredients();
+
+    Ingredient addIngredient(String var1, String var2, Supplier var3, Number var4, Number var5);
+
+    void removeIngredient(Ingredient var1) throws ServerInterface.UnableToDeleteException;
+
+    void setRestockLevels(Ingredient var1, Number var2, Number var3);
+
+    Number getRestockThreshold(Ingredient var1);
+
+    Number getRestockAmount(Ingredient var1);
+
+    Map<Ingredient, Number> getIngredientStockLevels();
+
+    List<Supplier> getSuppliers();
+
+    Supplier addSupplier(String var1, Number var2);
+
+    void removeSupplier(Supplier var1) throws ServerInterface.UnableToDeleteException;
+
+    Number getSupplierDistance(Supplier var1);
+
+    List<Drone> getDrones();
+
+    Drone addDrone(Number var1);
+
+    void removeDrone(Drone var1) throws ServerInterface.UnableToDeleteException;
+
+    Number getDroneSpeed(Drone var1);
+
+    String getDroneStatus(Drone var1);
+
+    List<Staff> getStaff();
+
+    Staff addStaff(String var1);
+
+    void removeStaff(Staff var1) throws ServerInterface.UnableToDeleteException;
+
+    String getStaffStatus(Staff var1);
+
+    List<Order> getOrders();
+
+    void removeOrder(Order var1) throws ServerInterface.UnableToDeleteException;
+
+    Number getOrderDistance(Order var1);
+
+    boolean isOrderComplete(Order var1);
+
+    String getOrderStatus(Order var1);
+
+    Number getOrderCost(Order var1);
+
+    List<Postcode> getPostcodes();
+
+    void addPostcode(String var1, Number var2);
+
+    void removePostcode(Postcode var1) throws ServerInterface.UnableToDeleteException;
+
+    List<User> getUsers();
+
+    void removeUser(User var1) throws ServerInterface.UnableToDeleteException;
+
+    void addUpdateListener(UpdateListener var1);
+
+    void notifyUpdate();
+
+    public static class UnableToDeleteException extends Exception {
+        public UnableToDeleteException(String message) {
+            super(message);
+        }
+    }
+}
